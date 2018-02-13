@@ -11,7 +11,6 @@ app.get('/', function(req,res){
 })
 
 app.get('/check/:regno/:transid/:bank', function(req,wres){
-	//var base = 'http://clin.cmcvellore.ac.in/conference/ConferencePay.asmx/CONFONLINEPAYSTATUS?';
 	
 	var base = '/conference/ConferencePay.asmx/CONFONLINEPAYSTATUS?';
 	var url = base + 'regno=' + req.params.regno + 
