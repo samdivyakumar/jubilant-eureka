@@ -42,13 +42,23 @@ app.get('/check/:regno/:transid/:bank', function(req,wres){
 
 	//res.sendStatus(200);
 	var rendered_html = '<html><head>\n' +
+
 						'<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\n' +
+						'<style type="text/css">\n' +
+						'.bs-example{\n' +
+						'margin: 50px;\n' +
+						'}</style>\n' +
 						'</head><body>\n' +
+						'<div class="bs-example">\n' +
 						'<div class="container">\n' +
+						'<div class="panel panel-primary">\n' +
+						'<div class="panel-heading">\n' +
+						'<div class="panel-title"><h1>Distance Education, CMC Vellore.</h1></div></div>\n' +
+						'<div class="panel-body">\n' +
 						'<h2>Registration Number: '+ registration +
-						'<br><h2>Amount: '+ amount + 
-						'</h2><br><h2>Status: '+ paystat +
-						'</h2></div></body></html>'
+						'</h2><h2>Amount: '+ amount + 
+						'</h2><h2>Status: '+ paystat +
+						'</h2></div></div></div></div></body></html>'
 
 	wres.send(rendered_html);
 	//wres.send(path.join(__dirname,'index.html'));
