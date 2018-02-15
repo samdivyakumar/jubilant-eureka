@@ -58,7 +58,7 @@ app.get('/check/:regno/:transid/:bank', function(req,wres){
 						'<h2>Registration Number: '+ registration +
 						'</h2><h2>Amount: '+ amount + 
 						'</h2><h2>Status: '+ paystat +
-						'</h2></div></div></div></div></body></html>'
+						'</h2></div><div class="panel-footer"><center><h3>payment status check</h3></center></div></div></div></body></html>'
 
 	wres.send(rendered_html);
 	//wres.send(path.join(__dirname,'index.html'));
