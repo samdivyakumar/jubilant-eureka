@@ -46,10 +46,10 @@ app.get('/check/:regno/:transid/:bank', function(req, wres) {
 					'<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\n' +
 					'</head><body>\n' +
 					'<div class="container-fluid">\n' +
-					'<div>\n' +
 					'<div class="panel panel-primary">\n' +
 					'<div class="panel-heading">\n' +
 					'<div class="panel-title"><h1>Distance Education, CMC Vellore.</h1></div></div>\n' +
+					'<div class="panel-header"><center><h3>Payment Status Check</h3></center></div>\n' +
 					'<div class="panel-body">\n' +
 					'<div class="table-responsive">\n' +
 					'<table class="table table-bordered">\n' +
@@ -60,8 +60,10 @@ app.get('/check/:regno/:transid/:bank', function(req, wres) {
 					'<td>' + amount + '</td></tr>\n' +
 					'<tr>\n<td><b> Status: </b></td>' +
 					'<td>' + paystat + '</td></tr>\n' +
-					'</tbody>\n' +
-					'</div><div class="panel-footer"><center><h3>Payment Status Check</h3></center></div></div></div></body></html>'
+					'</tbody></table>\n' +
+					'</div><div class="panel-footer"><center><h4>If the status is NOT PROCESSED, Please wait for 24 hours to confirm the payment</h4></center></div></div></div></div></body>\n' +
+	
+					'</html>'
 
 				wres.send(rendered_html);
 				//wres.send(path.join(__dirname,'index.html'));
