@@ -4,19 +4,19 @@ var path = require('path');
 var app = express();
 
 //Webroot
-app.get('/', function(req,res){
+app.get('/', function(req, res) {
 	res.setHeader('Content-Type', 'text/html');
 	//res.sendStatus(200);
 	res.send('<html><body><h1>Working</h1></body></html>');
 })
 
-app.get('/check/:regno/:transid/:bank', function(req,wres){
-	
+app.get('/check/:regno/:transid/:bank', function(req, wres) {
+
 	var base = '/conference/ConferencePay.asmx/CONFONLINEPAYSTATUS?';
-	var url = base + 'regno=' + req.params.regno + 
-					 '&transid=' + req.params.transid + 
-					 '&conference=' + process.env.DEPTCODE +'&confyear=' + process.env.CONFYEAR +
-					 '&bankname=' + req.params.bank;
+	var url = base + 'regno=' + req.params.regno +
+		'&transid=' + req.params.transid +
+		'&conference=' + process.env.DEPTCODE + '&confyear=' + process.env.CONFYEAR +
+		'&bankname=' + req.params.bank;
 
 	var options = {
 		host: process.env.HOST,
@@ -24,62 +24,53 @@ app.get('/check/:regno/:transid/:bank', function(req,wres){
 		path: url
 	}
 	//res.redirect(url);
-	var response_data= '';
+	var response_data = '';
 	const http = require('http');
 	var parseString = require('xml2js').parseString;
-	var request = http.request(options, function(hres){
+	var request = http.request(options, function(hres) {
 		var data = '';
-		hres.on('data', function(chunk){
+		hres.on('data', function(chunk) {
 			data += chunk;
 		});
-		hres.on('end', function(){
+		hres.on('end', function() {
 			//console.log(data);
-			parseString(data, function(err, res){
+			parseString(data, function(err, res) {
 				var registration = res.DataTable['diffgr:diffgram'][0].DocumentElement[0].conferencepay[0].Registration[0];
 				var amount = res.DataTable['diffgr:diffgram'][0].DocumentElement[0].conferencepay[0].Amount[0];
 				var paystat = res.DataTable['diffgr:diffgram'][0].DocumentElement[0].conferencepay[0].Result[0];
 				wres.setHeader('Content-Type', 'text/html');
 
-	//res.sendStatus(200);
-	var rendered_html = '<html><head>\n' +
+				//res.sendStatus(200);
+				var rendered_html = '<html><head>\n' +
 
-						'<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\n' +
-						/*'<style type="text/css">\n' +
-						'.bs-example{\n' +
-						'margin: 50px;\n' +
-						'}</style>\n' +*/
-						'</head><body>\n' +
-						//'<div class="bs-example">\n' +
-						'<div class="container-fluid">\n' +
-						'<div>\n' +
-						'<div class="panel panel-primary">\n' +
-						'<div class="panel-heading">\n' +
-						'<div class="panel-title"><h1>Distance Education, CMC Vellore.</h1></div></div>\n' +
-						'<div class="panel-body">\n' +
-						'<div class="table-responsive">\n' +
-						'<table class="table table-bordered">\n' +
-						'<tbody>\n' +
-                    '<tr>\n<td> Registration Number: </td>' +
-                    '<td>' + registration + '</td></tr>\n' +
-                    '<tr>\n<td> Amount: </td>' +
-                    '<td>' + amount + '</td></tr>\n' +
-                     '<tr>\n<td> Status: </td>' +
-                    '<td>' + paystat + '</td></tr>\n' +
-                    '</tbody>\n' +
-						//'<h2>Registration Number: '+ registration +
-						//'</h2><h2>Amount: '+ amount + 
-						//'</h2><h2>Status: '+ paystat +
-						//'</h2>' +
-						'</div><div class="panel-footer"><center><h3>Payment Status Check</h3></center></div></div></div></body></html>'
+					'<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\n' +
+					'</head><body>\n' +
+					'<div class="container-fluid">\n' +
+					'<div>\n' +
+					'<div class="panel panel-primary">\n' +
+					'<div class="panel-heading">\n' +
+					'<div class="panel-title"><h1>Distance Education, CMC Vellore.</h1></div></div>\n' +
+					'<div class="panel-body">\n' +
+					'<div class="table-responsive">\n' +
+					'<table class="table table-bordered">\n' +
+					'<tbody>\n' +
+					'<tr>\n<td><b> Registration Number: </b></td>' +
+					'<td>' + registration + '</td></tr>\n' +
+					'<tr>\n<td><b> Amount: </b></td>' +
+					'<td>' + amount + '</td></tr>\n' +
+					'<tr>\n<td><b> Status: </b></td>' +
+					'<td>' + paystat + '</td></tr>\n' +
+					'</tbody>\n' +
+					'</div><div class="panel-footer"><center><h3>Payment Status Check</h3></center></div></div></div></body></html>'
 
-	wres.send(rendered_html);
-	//wres.send(path.join(__dirname,'index.html'));
+				wres.send(rendered_html);
+				//wres.send(path.join(__dirname,'index.html'));
 				console.log(res.DataTable['diffgr:diffgram'][0].DocumentElement[0].conferencepay[0])
 			})
 
 		});
 	});
-	request.on('error', function(err){
+	request.on('error', function(err) {
 		console.log(err.message);
 	});
 	request.end();
