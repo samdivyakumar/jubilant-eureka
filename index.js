@@ -44,21 +44,33 @@ app.get('/check/:regno/:transid/:bank', function(req,wres){
 	var rendered_html = '<html><head>\n' +
 
 						'<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\n' +
-						'<style type="text/css">\n' +
+						/*'<style type="text/css">\n' +
 						'.bs-example{\n' +
 						'margin: 50px;\n' +
-						'}</style>\n' +
+						'}</style>\n' +*/
 						'</head><body>\n' +
-						'<div class="bs-example">\n' +
-						'<div class="container">\n' +
+						//'<div class="bs-example">\n' +
+						'<div class="container-fluid">\n' +
+						'<div>\n' +
 						'<div class="panel panel-primary">\n' +
 						'<div class="panel-heading">\n' +
 						'<div class="panel-title"><h1>Distance Education, CMC Vellore.</h1></div></div>\n' +
 						'<div class="panel-body">\n' +
-						'<h2>Registration Number: '+ registration +
-						'</h2><h2>Amount: '+ amount + 
-						'</h2><h2>Status: '+ paystat +
-						'</h2></div><div class="panel-footer"><center><h3>payment status check</h3></center></div></div></div></body></html>'
+						'<div class="table-responsive">\n' +
+						'<table class="table table-bordered">\n' +
+						'<tbody>\n' +
+                    '<tr>\n<td> Registration Number: </td>' +
+                    '<td>' + registration + '</td></tr>\n' +
+                    '<tr>\n<td> Amount: </td>' +
+                    '<td>' + amount + '</td></tr>\n' +
+                     '<tr>\n<td> Status: </td>' +
+                    '<td>' + paystat + '</td></tr>\n' +
+                    '</tbody>\n' +
+						//'<h2>Registration Number: '+ registration +
+						//'</h2><h2>Amount: '+ amount + 
+						//'</h2><h2>Status: '+ paystat +
+						//'</h2>' +
+						'</div><div class="panel-footer"><center><h3>Payment Status Check</h3></center></div></div></div></body></html>'
 
 	wres.send(rendered_html);
 	//wres.send(path.join(__dirname,'index.html'));
