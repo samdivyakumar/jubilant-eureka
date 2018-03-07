@@ -1,6 +1,7 @@
 ## Checking pay status against payment gateway ##
 
 ### Set the following environment variables ###
+| Variable	| Explanation								|
 |---------------|-----------------------------------------------------------------------| 
 |- CONFYEAR 	| # Provided by payment gateway provider				|
 |- DEPTCODE	| # Conference code - also provided by provider				|
