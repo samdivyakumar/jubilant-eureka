@@ -12,7 +12,7 @@
 |- INSTNAME	| Institution name - "Some Inst, Place, Country"			|
 |- BOOTSTRAP	| https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css	|
 |- HOMEPAGE	| http://some_nst.org							|
-|---------------|-----------------------------------------------------------------------|
+
 ####If using SSL
 - CA1
 - CA2
