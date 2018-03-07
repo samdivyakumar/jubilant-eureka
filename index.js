@@ -96,7 +96,7 @@ app.get('/check/:regno/:transid/:bank', function (req, wres) {
 					'<div class="container-fluid">\n' +
 					'<div class="panel panel-primary">\n' +
 					'<div class="panel-heading">\n' +
-					'<div class="panel-title"><h1>' + process.env.INSTNAME + 
+					'<div class="panel-title"><h1>' + process.env.INSTNAME +
 					'</h1></div></div>\n' +
 					'<div class="panel-header"><center><h3>Payment Status Check</h3></center></div>\n' +
 					'<div class="panel-body">\n' +
@@ -406,7 +406,9 @@ app.get('/npay', function (req, res) {
 		encodeURIComponent(req.query.cname) +
 		'&address=%22%22&address1=%22%22&city=%22%22&state=%22%22&pincode=%22%22&phone=%22%22&mobile=%22%22&email=%22%22&foodtype=%22%22&participanttype=%22%22&practicetype=%22%22&members=%22%22' +
 		'&totalregfee=' + encodeURIComponent(req.query.totalregfee) +
-		'&conference=CMCAS2018&confyear=2017&bankname=' + encodeURIComponent(req.query.paymentmode) + '&remoteip=%22%22';
+		'&conference=' + process.env.DEPTCODE +
+		'&confyear=' + process.env.CONFYEAR +
+		'&bankname=' + encodeURIComponent(req.query.paymentmode) + '&remoteip=%22%22';
 
 	var options = {
 		host: process.env.HOST,
@@ -479,11 +481,13 @@ app.get('/nconfirmation.html', function (req, res) {
 			app.locals.csslink +
 			'</head><body>' +
 			'<div class="container">' +
-			'<h2>CMC Annual Symposium 2018' +
+			'<h2>' + process.env.INSTNAME + '</h2>' +
 			'<h2>Your transaction ID is ' + req.query.transid + '.</h2>' +
 			'<h3>' + req.query.message + '</h3>' +
 			'<h3>Please save for your reference</h3>' +
-			'<h3>Click the link to return to <a href="http://www.cmcannualsymposium.com/">CMC Symposium page</a></h3>' +
+			'<h3>Click the link to return to ' +
+			'<a href="' + process.env.HOMEPAGE + '">' +
+			process.env.INSTNAME + '</a></h3>' +
 			'</div></body></html>');
 		res.end();
 		return;
@@ -494,7 +498,7 @@ app.get('/nconfirmation.html', function (req, res) {
 			app.locals.csslink +
 			'</head><body>' +
 			'<div class="container">' +
-			'<h2>CMC Annual Symposium 2018' +
+			'<h2>' + process.env.INSTNAME + '</h2>'
 			'<h2>Not a valid transaction ID OR cancelled payment.</h2>' +
 			'</div></body></html>');
 		res.end();
