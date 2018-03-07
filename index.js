@@ -12,8 +12,8 @@ var DDPClient = require("ddp");
 
 var ddpclient = new DDPClient({
 	// All properties optional, defaults shown
-	host: "localhost",
-	port: 3010,
+	host: process.env.DDPHOST,
+	port: process.env.DDPORT,
 	ssl: false,
 	autoReconnect: true,
 	autoReconnectTimer: 500,
@@ -44,7 +44,7 @@ app.use(bodyParser.json());
 // Locals
 
 app.locals.csslink = '<link href="' + process.env.BOOTSTRAP + '" rel="stylesheet">';
-app.locals.port = 443;
+app.locals.port = process.env.SSHPORT;
 
 app.get('/', function (req, res) {
 	res.redirect(process.env.HOMEPAGE);
@@ -96,7 +96,8 @@ app.get('/check/:regno/:transid/:bank', function (req, wres) {
 					'<div class="container-fluid">\n' +
 					'<div class="panel panel-primary">\n' +
 					'<div class="panel-heading">\n' +
-					'<div class="panel-title"><h1>' + process.env.INSTNAME + '</h1></div></div>\n' +
+					'<div class="panel-title"><h1>' + process.env.INSTNAME + 
+					'</h1></div></div>\n' +
 					'<div class="panel-header"><center><h3>Payment Status Check</h3></center></div>\n' +
 					'<div class="panel-body">\n' +
 					'<div class="table-responsive">\n' +
@@ -559,9 +560,9 @@ http.createServer(function (req, res) {
 // var certificate = fs.readFileSync( 'certificate.pem' );
 
 var options = {
-	key: fs.readFileSync('./cmcdistedu_org.key'),
-	cert: fs.readFileSync('./348b8ad3537fcda6.crt'),
-	ca: [fs.readFileSync('./gd1.crt'), fs.readFileSync('./gd2.crt'), fs.readFileSync('./gd3.crt')]
+	key: fs.readFileSync('./' + process.env.KEY),
+	cert: fs.readFileSync('./' + process.env.CERT),
+	ca: [fs.readFileSync('./' + process.env.CA1), fs.readFileSync('./' + process.env.CA2), fs.readFileSync('./' + process.env.CA3)]
 }
 https.createServer(options, app).listen(app.locals.port, function () {
 	console.log("Started on PORT " + app.locals.port);
