@@ -364,26 +364,6 @@ app.get('/pay', function (req, res) {
 		console.log('end: ' + nurl);
 	});
 
-	/*
-	  var data = '<html><head>' +
-	    app.locals.csslink +
-	    '</head><body>' +
-	    '<div class="container">' +
-	    '<h2> Name : ' + req.query.cname + '</h2>' +
-	    '<h2> Total Registration Fee : ' + req.query.totalregfee + '</h2></br>' +
-	    '<a href="http://pay.cmcdistedu.org/proceed/' + req.query.regno + '">' +
-	    '<button class=\"btn btn-info\">Submit for payment</button></a>' +
-	    '</div></body></html>';
-
-	  res.writeHead(200, {
-	    'Content-Type': 'text/html',
-	    'Content-Length': data.length
-	  });
-	  res.end(data);
-	*/
-
-
-
 	function GetURL(data, cb) {
 		parseString(data, function (err, result) {
 			var url = result.DataTable['diffgr:diffgram'][0].DocumentElement[0].conferencepay[0].URL[0];
