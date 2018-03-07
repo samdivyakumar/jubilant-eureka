@@ -13,7 +13,8 @@
 |- BOOTSTRAP	| https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css	|
 |- HOMEPAGE	| http://some_nst.org							|
 
-####If using SSL
+
+#### If using SSL, also set these environment variables ####
 - CA1
 - CA2
 - CA3
@@ -21,7 +22,7 @@
 - KEY
 - SSHPORT
 
-####If using DDP
+#### If using DDP, these two variables need to be set too  ####
 - DDPHOST
 - DDPORT
 
@@ -31,4 +32,4 @@ npm install
 node index.js
 ```
 
-### App will be available on PORT 3200 ###
+### App will be available on PORT - SSHPORT ###
