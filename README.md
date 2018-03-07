@@ -3,7 +3,13 @@
 ### Set the following environment variables ###
 - CONFYEAR
 - DEPTCODE
-- PAYURL
+- HOST=
+- CONFYEAR=
+- PAYSTATUS="/conference/ConferencePay.asmx/CONFONLINEPAYSTATUS"
+- PAYSAVE="/conference/ConferencePay.asmx/CONFONLINEPAYSAVE"
+- INSTNAME="Some Inst, Place, Country"
+- BOOTSTRAP=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css
+- HOMEPAGE=
 
 ### Then run ###
 ```
